@@ -1,4 +1,4 @@
-package com.example.michelefreitas.workshopmongo.domain;
+package com.michelefreitas.workshopmongo.domain;
 
 import java.io.Serializable;
 

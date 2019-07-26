@@ -1,17 +1,18 @@
-package com.example.michelefreitas.workshopmongo.resource;
+package com.michelefreitas.workshopmongo.resource;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.michelefreitas.workshopmongo.domain.User;
-import com.example.michelefreitas.workshopmongo.dto.UserDTO;
-import com.example.michelefreitas.workshopmongo.service.UserService;
+import com.michelefreitas.workshopmongo.domain.User;
+import com.michelefreitas.workshopmongo.dto.UserDTO;
+import com.michelefreitas.workshopmongo.service.UserService;
 
 @RestController
 @RequestMapping(value="/users")//padrão nome recurso plural
@@ -29,4 +30,13 @@ public class UserResource {
 		List<UserDTO> listDto = list.stream().map(x -> new UserDTO(x)).collect(Collectors.toList()); // converte cada um para DTO. stream transformar em coleção compatível. .map pega cada objeto x da lista original e para cada objeto x da lista orig..., para cada objeto desse q será um usuário
 		return ResponseEntity.ok().body(listDto);//ok vai instanciar Response... já com o cód http com sucesso. body é corpo da resposta
 	}
+	
+
+	//id tem que casar com id recebido no value da url colocar @PathVaria...
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+ 	public ResponseEntity<UserDTO> findById(@PathVariable String id) {
+		User obj = service.findById(id);
+		return ResponseEntity.ok().body(new UserDTO(obj));
+	}
+	
 }

@@ -1,4 +1,4 @@
-package com.example.michelefreitas.workshopmongo.config;
+package com.michelefreitas.workshopmongo.config;
 
 
 
@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
-import com.example.michelefreitas.workshopmongo.domain.User;
-import com.example.michelefreitas.workshopmongo.repository.UserRepository;
+import com.michelefreitas.workshopmongo.domain.User;
+import com.michelefreitas.workshopmongo.repository.UserRepository;
 
 @Configuration
 public class Instantiation implements CommandLineRunner {
