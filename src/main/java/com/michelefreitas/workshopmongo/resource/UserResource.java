@@ -35,7 +35,7 @@ public class UserResource {
 	}
 	
 
-	//id tem que casar com id recebido no value da url colocar @PathVaria...
+	//id tem que casar com id recebido no value da url colocar @PathVaria... Buscar por id
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
  	public ResponseEntity<UserDTO> findById(@PathVariable String id) {
 		User obj = service.findById(id);
@@ -54,6 +54,12 @@ public class UserResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		//retorna resposta vazia com o cod 201(que é o cod resposta http), com o cabeçalho contendo a localização do novo recurso criado
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<Void> delete(@PathVariable String id){
+		service.delete(id);
+		return ResponseEntity.noContent().build();
 		
 	}
 	
