@@ -63,5 +63,17 @@ public class UserResource {
 		
 	}
 	
+	//atualização. Tanto id na URL, quanto os dados vindo no corpo da requisição
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody UserDTO objDto, @PathVariable String id){
+		//instancia obj a partir do objDto que vem da requisição 
+		User obj = service.fromDTO(objDto);
+		//garantindo que o obj tem o id é o da requisição
+		obj.setId(id);
+		obj = service.update(obj);
+		return ResponseEntity.noContent().build();
+		
+	}
+	
 	
 }
