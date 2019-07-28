@@ -3,7 +3,6 @@ package com.michelefreitas.workshopmongo.config;
 
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.TimeZone;
 
@@ -13,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.michelefreitas.workshopmongo.domain.Post;
 import com.michelefreitas.workshopmongo.domain.User;
+import com.michelefreitas.workshopmongo.dto.AuthorDTO;
 import com.michelefreitas.workshopmongo.repository.PostRepository;
 import com.michelefreitas.workshopmongo.repository.UserRepository;
 
@@ -41,12 +41,15 @@ public class Instantiation implements CommandLineRunner {
 		User alex = new User(null, "Alex Green", "alex@gmail.com");
 		User bob = new User(null, "Bob Grey", "bob@gmail.com");
 		
+		//salvar usuário para que ele tenham id próprio
+		userRepository.saveAll(Arrays.asList(maria, alex, bob));
+		
 		//instanciando o post já associado com o autor dele
-		Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", maria);
-		Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Acordei feliz hoje!", maria);
+		Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", new AuthorDTO(maria));
+		Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Acordei feliz hoje!", new AuthorDTO(maria));
 		
 		//lista com vários argumentos. Salvando todo mundo
-		userRepository.saveAll(Arrays.asList(maria, alex, bob));
+
 		postRepository.saveAll(Arrays.asList(post1, post2));
 	}
 }
