@@ -20,7 +20,7 @@ public class User implements Serializable {
 	private String email;
 	
 	//No java a List é apenas uma interface e o ArrayList implementação possível dessa lista
-	//Associações (inicie as coleções)
+	//Associações (inicie as coleções). Associação do usuário com o o post dele
 	//Um atributo está referenciando outra coleção do DB basta colocar @DBRef.
 	//lazy=true significa que os posts só serão carregados se eu explicitamente acessá-los
 	@DBRef(lazy=true)

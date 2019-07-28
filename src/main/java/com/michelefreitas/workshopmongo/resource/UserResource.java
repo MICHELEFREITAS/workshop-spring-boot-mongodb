@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.michelefreitas.workshopmongo.domain.Post;
 import com.michelefreitas.workshopmongo.domain.User;
 import com.michelefreitas.workshopmongo.dto.UserDTO;
 import com.michelefreitas.workshopmongo.service.UserService;
@@ -35,7 +36,7 @@ public class UserResource {
 	}
 	
 
-	//id tem que casar com id recebido no value da url colocar @PathVaria... Buscar por id
+	//id tem que casar com id recebido no value da url colocar @PathVaria... Buscar usuario por id
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
  	public ResponseEntity<UserDTO> findById(@PathVariable String id) {
 		User obj = service.findById(id);
@@ -73,6 +74,16 @@ public class UserResource {
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
 		
+	}
+	
+	//retorna List de Post. Nome do método findPosts 
+	@RequestMapping(value="/{id}/posts", method=RequestMethod.GET)
+	public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
+		//busca usuário por id e retorna no obj
+		User obj = service.findById(id);
+		//retorna lista de posts associada com o usuário. Chama o getPosts ele carrega os posts do usuário.
+		return ResponseEntity.ok().body(obj.getPosts());
+		//roda o Worksho... e testa no Postman (GET) http://localhost:8081/users/5d3d78eda8e53420f8355b3b/posts
 	}
 	
 	
