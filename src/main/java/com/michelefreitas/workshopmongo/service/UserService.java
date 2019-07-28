@@ -29,8 +29,7 @@ public class UserService {
 		//se não existir o usuário do id passado, método retornará null
 		Optional<User> obj = repo.findById(id);
 		return obj.orElseThrow(()-> new ObjectNotFoundException("Objeto não encontrado"));
-		
-		
+	
 	}
 	
 	public User insert(User obj) {
