@@ -25,7 +25,8 @@ public class PostService {
 	
 	//método de busca com nome findByTitle. Retorna lista de posts 
 	public List<Post> findByTitle(String text){
-		return repo.findByTitleContainingIgnoreCase(text);		
+		//return repo.findByTitleContainingIgnoreCase(text);
+		return repo.searchTitle(text);// vem lá do mongo do método no PostRepository
 	}
 	
 }
