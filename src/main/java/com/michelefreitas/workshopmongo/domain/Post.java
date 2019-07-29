@@ -14,25 +14,23 @@ import com.michelefreitas.workshopmongo.dto.CommentDTO;
 @Document
 public class Post implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	private String id;
-	private Date data;
+	private Date date;
 	private String title;
 	private String body;
 	private AuthorDTO author;
 	
-	//Lista de commentDTO iniciada com Array..
 	private List<CommentDTO> comments = new ArrayList<>();
 	
 	public Post() {
-		
 	}
 
-	public Post(String id, Date data, String title, String body, AuthorDTO author) {
+	public Post(String id, Date date, String title, String body, AuthorDTO author) {
 		super();
 		this.id = id;
-		this.data = data;
+		this.date = date;
 		this.title = title;
 		this.body = body;
 		this.author = author;
@@ -46,12 +44,12 @@ public class Post implements Serializable {
 		this.id = id;
 	}
 
-	public Date getData() {
-		return data;
+	public Date getDate() {
+		return date;
 	}
 
-	public void setData(Date data) {
-		this.data = data;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public String getTitle() {
@@ -69,7 +67,7 @@ public class Post implements Serializable {
 	public void setBody(String body) {
 		this.body = body;
 	}
-	
+
 	public AuthorDTO getAuthor() {
 		return author;
 	}
@@ -77,7 +75,7 @@ public class Post implements Serializable {
 	public void setAuthor(AuthorDTO author) {
 		this.author = author;
 	}
-	
+
 	public List<CommentDTO> getComments() {
 		return comments;
 	}

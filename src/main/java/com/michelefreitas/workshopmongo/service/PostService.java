@@ -1,5 +1,6 @@
 package com.michelefreitas.workshopmongo.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,4 +30,12 @@ public class PostService {
 		return repo.searchTitle(text);// vem lá do mongo do método no PostRepository
 	}
 	
+	//método de consulta
+	public List<Post> fullSearch(String text, Date minDate, Date maxDate){
+		//acrescentar 1 dia na data	pq ela vai ser gerado no dia informado pelo usuário só que a meia noite.
+		// os posts tem que ser até 24 horas daquele dia
+		maxDate = new Date(maxDate.getTime() + 24 * 60 * 60 * 1000);
+		
+		return repo.fullSearch(text, minDate, maxDate);		
+	}	
 }
